@@ -54,20 +54,33 @@
             <classpath refid="Promotional Article Detection.classpath"/>
         </java>
     </target>
-              	<target name="demo" depends="build">
-              	    	<java classname="edu.promo.lm.DemoLM" fork="true">
-              	    	<jvmarg value="-server"/>
-              	    	<classpath refid="Promotional Article Detection.classpath"/>
-              	    	<arg value="-corpusName=medsamp2010"/>
-              	        <arg value="-fileExtension=.txt"/>
-              	        <arg value="-textParser=com.lingpipe.demos.lm.MedlineTextParser"/>
-              	        <arg value="-maxNGram=8"/>
-              	        <arg value="-numChars=256"/>
-              	        <arg value="-lambdaFactors=2.0, 8.0, 32.0"/>
-              	        <arg value="-sampleSize=5000"/>
-              	        <arg value="-sampleFreq=1"/>
-              	        <arg value="-reportFile=demo-out-8.txt"/>
-              	        <arg value="../../data/medline"/>
-              	        </java>
-              		</target>              	
+     
+  	<target name="javadoc" depends="build">  
+  		<javadoc sourcepath="src" destdir="doc" packagenames="*">  
+  			<classpath refid="Promotional Article Detection.classpath"/>
+  		</javadoc>
+  	</target>
+	<target name="demo-lm" depends="build">
+    	<java classname="edu.promo.lm.DemoLM" fork="true">
+    	<jvmarg value="-server"/>
+    	<classpath refid="Promotional Article Detection.classpath"/>
+    	<arg value="-corpusName=medsamp2010"/>
+        <arg value="-fileExtension=.txt"/>
+        <arg value="-textParser=com.lingpipe.demos.lm.MedlineTextParser"/>
+        <arg value="-maxNGram=8"/>
+        <arg value="-numChars=256"/>
+        <arg value="-lambdaFactors=2.0, 8.0, 32.0"/>
+        <arg value="-sampleSize=5000"/>
+        <arg value="-sampleFreq=1"/>
+        <arg value="-reportFile=demo-out-8.txt"/>
+        <arg value="../../data/medline"/>
+        </java>
+	</target>              
+  	<target name="demo-pcfg" depends="build">
+  	    	<java classname="edu.promo.pcfg.DemoPCFG" fork="true">
+  	    	<jvmarg value="-server"/>
+  	    	<classpath refid="Promotional Article Detection.classpath"/>
+  	    	<arg value="-corpusName=medsamp2010"/>
+  	        </java>
+  	</target>                                    	
 </project>
