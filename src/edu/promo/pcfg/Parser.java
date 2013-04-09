@@ -78,6 +78,16 @@ public class Parser {
 		return prob;
 	}
 	
+	public void save(String filename) {
+		
+		lp.saveParserToSerialized(filename);
+	}
+	
+	public void load(String filename) {
+		
+		lp = LexicalizedParser.loadModel(filename);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

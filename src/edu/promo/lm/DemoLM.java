@@ -1,26 +1,31 @@
 
 package edu.promo.lm;
 
+import java.io.File;
+
 public class DemoLM {
 		
 	public static void main(String[] args) {
 	
 		// Run demo
-		LMWord lmWord = new LMWord(1, 1000);
-		lmWord.train("dog bit man");
-		lmWord.train("man bit sausage");
-		lmWord.train("dog bit sausage");
-		lmWord.train("man bought sausage");
-		lmWord.train("man bought dog");
-		lmWord.test("man");
-		lmWord.test("dog");
-		lmWord.test("sausage");
-		lmWord.test("bit");
-		lmWord.test("bought");
-		lmWord.test("");
-		lmWord.test("dog bit");
-		lmWord.test("man bit dog");
+/*		LMChar lmChar = new LMChar(1, 100, 10);
+		File file = new File("data/sampleDoc.txt");
+		lmChar.train(file);
+		double prob = lmChar.test(file);
+		System.out.println(lmChar);
+		System.out.println(prob);*/
+		
+		LMWord lmWord = new LMWord(3,10);
+		File file = new File("data/sampleDoc2.txt");
+		lmWord.train(file);
+		double prob = lmWord.test(file);
 		System.out.println(lmWord);
+		System.out.println(prob);
+		System.out.println(lmWord.unknownTokenLM());
+		lmWord.test("dog");
+		lmWord.test("dogs");
+		lmWord.test("doe");
+		lmWord.test("red");
 	}
 
 }
