@@ -77,10 +77,37 @@
         </java>
 	</target>              
   	<target name="demo-pcfg" depends="build">
-  	    	<java classname="edu.promo.pcfg.DemoPCFG" fork="true">
-  	    	<jvmarg value="-server"/>
-  	    	<classpath refid="Promotional Article Detection.classpath"/>
-  	    	<arg value="-corpusName=medsamp2010"/>
-  	        </java>
-  	</target>                                    	
+    	<java classname="edu.promo.pcfg.DemoPCFG" fork="true">
+    	<jvmarg value="-server"/>
+    	<classpath refid="Promotional Article Detection.classpath"/>
+    	<arg value="-corpusName=medsamp2010"/>
+        </java>
+  	</target>
+	<target name="runLMExpts" depends="build">
+		<java classname="edu.promo.expt.RunLMExpts" fork="true">
+		<jvmarg value="-server"/>
+		<classpath refid="Promotional Article Detection.classpath"/>
+		<arg value="-dir=C:\Users\Heath\Documents\UT Austin\NLP\Project\data"/>
+	    <arg value="-modelType=LMWord"/>
+		<arg value="-maxNGrams=1"/>
+		<arg value="-minSize=1"/>
+		<arg value="-resultsFilename=data/resultsLMWord.csv"/>
+	    <arg value="-modelFilename=data/modelLMWord"/>
+		<arg value="-numFolds=5"/>
+	    <arg value="-lambda=10"/>
+	    <arg value="-seed=1"/>
+		</java>
+	</target>
+  	<target name="runPCFGExpts" depends="build">
+		<java classname="edu.promo.expt.RunPCFGExpts" fork="true">
+		<jvmarg value="-server"/>
+		<classpath refid="Promotional Article Detection.classpath"/>
+		<arg value="-dir=C:\Users\Heath\Documents\UT Austin\NLP\Project\data"/>
+	    <arg value="-seedFilename=data/englishPCFG.ser.gz"/>
+	    <arg value="-modelFilename=data/modelPCFG"/>
+		<arg value="-resultsFilename=data/resultsPCFG.csv"/>
+		<arg value="-numFolds=5"/>
+	    <arg value="-seed=1"/>
+		</java>
+	</target>   
 </project>
